@@ -78,6 +78,9 @@ function afficherMessageFinal() {
     if (score <= 3) {
         messageScoreFinal.innerHTML = "Tu devrais rebosser les bases de Javascript.";
         messageScoreFinal.classList.add("JsMauvais");
+    } else if (score === 4) {
+        messageScoreFinal.innerHTML = "Bien joué, c'est presque parfait";
+        messageScoreFinal.classList.add("JsMoyen");
     } else if (score === 5) {
         messageScoreFinal.innerHTML = "Bravo tu maitrises les bases de Javascript !";
         messageScoreFinal.classList.add("JsJuste");
