@@ -1,0 +1,14 @@
+.jsErreur{
+    color: red;
+}
+
+.JsMauvais{
+    color:red
+}
+.JsJuste {
+    color:green
+}
+
+.JsFond{
+    background-color: rgb(111, 108, 119);
+}
