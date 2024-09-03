@@ -11,24 +11,25 @@ let questionActuelle = 1;
 const nombreDeQuestions = 5;
 let boutonSelectionne = null;
 
-// Fonction pour afficher une question spécifique
+
 function afficherQuestion(numero) {
     document.querySelectorAll(".question").forEach(q => q.classList.add('hidden'));
     document.getElementById(`question-${numero}`).classList.remove('hidden');
 }
 
-// Fonction pour gérer la sélection des réponses
+
 function gererSelectionReponse() {
     document.querySelectorAll(".Reponse-btn").forEach(bouton => {
         bouton.addEventListener('click', function() {
             document.querySelectorAll(".Reponse-btn").forEach(b => b.classList.remove('bg-yellow-300'));
-            this.classList.add('bg-yellow-300');
             boutonSelectionne = this;
+            this.classList.add('bg-yellow-300');
+         
         });
     });
 }
 
-// Fonction pour vérifier la réponse
+
 function verifierReponse() {
     if (boutonSelectionne) {
         const estCorrect = boutonSelectionne.classList.contains('juste');
@@ -50,7 +51,7 @@ function verifierReponse() {
     }
 }
 
-// Fonction pour passer à la question suivante
+
 function questionSuivante() {
     questionActuelle++;
     if (questionActuelle <= nombreDeQuestions) {
@@ -63,7 +64,19 @@ function questionSuivante() {
     }
 }
 
-// Fonction pour terminer le quiz
+
+function afficherMessageFinal() {
+    if (score <= 4) {
+        messageScoreFinal.innerHTML = "Tu devrais rebosser les bases de Javascript.";
+        messageScoreFinal.classList.add("JsMauvais");
+ 
+    } else if (score === 5) {
+        messageScoreFinal.innerHTML = "Bravo tu maitrises les bases de Javascript !";
+        messageScoreFinal.classList.add("JsJuste");
+    }
+}
+
+
 function FinirLeQuiz() {
     messageScore.innerHTML = `Votre score final est de : ${score}/${nombreDeQuestions}`;
     boutonVerifier.classList.add('hidden');
@@ -73,21 +86,8 @@ function FinirLeQuiz() {
     afficherMessageFinal();
 }
 
-// Fonction pour afficher le message final
-function afficherMessageFinal() {
-    if (score <= 3) {
-        messageScoreFinal.innerHTML = "Tu devrais rebosser les bases de Javascript.";
-        messageScoreFinal.classList.add("JsMauvais");
-    } else if (score === 4) {
-        messageScoreFinal.innerHTML = "Bien joué, c'est presque parfait";
-        messageScoreFinal.classList.add("JsMoyen");
-    } else if (score === 5) {
-        messageScoreFinal.innerHTML = "Bravo tu maitrises les bases de Javascript !";
-        messageScoreFinal.classList.add("JsJuste");
-    }
-}
 
-// Fonction pour redémarrer le quiz
+
 function redemarrerQuiz() {
     score = 0;
     questionActuelle = 1;
@@ -104,7 +104,7 @@ function redemarrerQuiz() {
     document.querySelectorAll(".Reponse-btn").forEach(b => b.classList.remove('bg-yellow-300'));
 }
 
-// Fonction d'initialisation
+
 function initialiserQuiz() {
     afficherQuestion(1);
     boutonSuivant.classList.add('hidden');
